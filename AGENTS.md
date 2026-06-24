@@ -122,6 +122,33 @@ EXPOSE 9093
 ENTRYPOINT ["java", "-jar", "app.jar", "--spring.profiles.active=docker"]
 ```
 
+## Tests
+
+**56 tests**, 14 archivos en `src/test/java/`:
+
+| Archivo | Tests | Tipo |
+|---------|-------|------|
+| `AuthControllerTest` | 5 | `@WebMvcTest` |
+| `DashboardControllerTest` | 3 | `@WebMvcTest` |
+| `ProxyControllerTest` | 5 | `@WebMvcTest` |
+| `AuthServiceTest` | 7 | Unitario (Mockito) |
+| `DashboardServiceTest` | 5 | Unitario (Mockito) |
+| `ProxyServiceTest` | 7 | Unitario (Mockito) |
+| `AdminDashboardStrategyTest` | 4 | Unitario (Mockito) |
+| `DocenteDashboardStrategyTest` | 4 | Unitario (Mockito) |
+| `EstudianteDashboardStrategyTest` | 5 | Unitario (Mockito) |
+| `BffUserPrincipalTest` | 3 | Unitario |
+| `JwtTokenProviderTest` | 4 | Unitario |
+| `GlobalExceptionHandlerTest` | 4 | Unitario (Mockito) |
+| `TestSecuritySupport` | — | Utilidad de soporte |
+
+**Frameworks:** JUnit 5, Mockito, AssertJ, Spring Security Test.
+
+**Ejecución:**
+```bash
+./mvnw test   # 56 tests, todos pasan
+```
+
 ## Ejecución local
 ```bash
 mvn spring-boot:run
