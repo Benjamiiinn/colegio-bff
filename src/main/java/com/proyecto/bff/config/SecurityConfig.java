@@ -27,9 +27,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/bff/auth/register", "/bff/auth/authenticate",
-                                "/bff/auth/refresh-token", "/bff/auth/refresh-token-cookie",
-                                "/bff/auth/logout").permitAll()
+                        .requestMatchers("/bff/auth/**",
+                            "/api/bff/auth/**"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtValidationFilter, UsernamePasswordAuthenticationFilter.class)
