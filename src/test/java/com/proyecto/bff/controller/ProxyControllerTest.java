@@ -39,7 +39,7 @@ class ProxyControllerTest {
         when(proxyService.getList(anyString(), anyString()))
                 .thenReturn(new Map[]{Map.of("id", 1, "nombre", "Test")});
 
-        mockMvc.perform(get("/bff/usuarios")
+        mockMvc.perform(get("/api/bff/usuarios")
                         .with(bffUser("ADMIN")))
                 .andExpect(status().isOk());
     }
@@ -49,7 +49,7 @@ class ProxyControllerTest {
         when(proxyService.post(anyString(), any(), anyString()))
                 .thenReturn(Map.of("id", 1, "nombre", "Nuevo"));
 
-        mockMvc.perform(post("/bff/usuarios")
+        mockMvc.perform(post("/api/bff/usuarios")
                         .with(bffUser("ADMIN"))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"nombre\":\"Nuevo\"}"))
@@ -58,7 +58,7 @@ class ProxyControllerTest {
 
     @Test
     void deleteUsuario_returns204() throws Exception {
-        mockMvc.perform(delete("/bff/usuarios/1")
+        mockMvc.perform(delete("/api/bff/usuarios/1")
                         .with(bffUser("ADMIN")))
                 .andExpect(status().isNoContent());
     }
@@ -68,14 +68,14 @@ class ProxyControllerTest {
         when(proxyService.getList(anyString(), anyString()))
                 .thenReturn(new Map[]{Map.of("id", 1, "tipo", "POSITIVA")});
 
-        mockMvc.perform(get("/bff/anotaciones")
+        mockMvc.perform(get("/api/bff/anotaciones")
                         .with(bffUser("ADMIN")))
                 .andExpect(status().isOk());
     }
 
     @Test
     void getUsuarios_withoutAuth_returns401() throws Exception {
-        mockMvc.perform(get("/bff/usuarios"))
+        mockMvc.perform(get("/api/bff/usuarios"))
                 .andExpect(status().isForbidden());
     }
 }

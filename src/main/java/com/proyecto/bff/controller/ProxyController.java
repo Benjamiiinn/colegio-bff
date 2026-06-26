@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.proyecto.bff.service.ProxyService;
 
 @RestController
-@RequestMapping("/bff")
+@RequestMapping("/api/bff")
 public class ProxyController {
 
     private final ProxyService proxyService;

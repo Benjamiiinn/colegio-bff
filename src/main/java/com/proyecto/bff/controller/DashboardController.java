@@ -11,7 +11,7 @@ import com.proyecto.bff.security.BffUserPrincipal;
 import com.proyecto.bff.service.DashboardService;
 
 @RestController
-@RequestMapping("/bff")
+@RequestMapping("/api/bff")
 public class DashboardController {
 
     private final DashboardService dashboardService;

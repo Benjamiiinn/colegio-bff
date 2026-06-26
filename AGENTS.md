@@ -156,5 +156,14 @@ mvn spring-boot:run
 mvn spring-boot:run -Dspring-boot.run.profiles=docker
 ```
 
+## CI/CD
+
+- **Repositorio:** `Benjamiiinn/colegio-bff`
+- **Workflow:** `.github/workflows/deploy.yml`
+- **Build context:** `bff-service/` (Dockerfile dentro de subcarpeta)
+- **ECS Service:** `bff-service-service`
+- **ECR Repo:** `colegio-bff`
+- **Trigger:** push a `main`
+
 ## Bugs conocidos (historial)
 1. **CalificacionesModal.jsx** (frontend): `GET /bff/calificaciones` no filtra por estudiante/asignatura. Solución: usar `GET /bff/calificaciones/estudiante/{estudianteId}` y filtrar por `asignaturaId` client-side.

@@ -42,7 +42,7 @@ class AuthControllerTest {
         LoginRequest request = new LoginRequest("test@test.com", "password");
         when(authService.login(any())).thenReturn(Map.of("token", "jwt-value", "email", "test@test.com"));
 
-        mockMvc.perform(post("/bff/auth/authenticate")
+        mockMvc.perform(post("/api/bff/auth/authenticate")
 
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
@@ -57,7 +57,7 @@ class AuthControllerTest {
                 "Nombre", "Apellido", "test@test.com", "pass123", "12345678-9", "ADMIN");
         when(authService.register(any())).thenReturn(Map.of("id", 1L));
 
-        mockMvc.perform(post("/bff/auth/register")
+        mockMvc.perform(post("/api/bff/auth/register")
 
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
@@ -68,7 +68,7 @@ class AuthControllerTest {
     void refreshToken_returns200() throws Exception {
         when(authService.refreshToken(any())).thenReturn(Map.of("token", "new-jwt"));
 
-        mockMvc.perform(post("/bff/auth/refresh-token")
+        mockMvc.perform(post("/api/bff/auth/refresh-token")
 
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"refreshToken\":\"my-refresh\"}"))
@@ -78,7 +78,7 @@ class AuthControllerTest {
 
     @Test
     void logout_returns204() throws Exception {
-        mockMvc.perform(post("/bff/auth/logout")
+        mockMvc.perform(post("/api/bff/auth/logout")
 
                         .cookie(new jakarta.servlet.http.Cookie("jwt-cookie", "some-jwt")))
                 .andExpect(status().isNoContent())
@@ -87,7 +87,7 @@ class AuthControllerTest {
 
     @Test
     void authenticate_withInvalidEmail_returns400() throws Exception {
-        mockMvc.perform(post("/bff/auth/authenticate")
+        mockMvc.perform(post("/api/bff/auth/authenticate")
 
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"email\":\"invalido\",\"password\":\"123\"}"))

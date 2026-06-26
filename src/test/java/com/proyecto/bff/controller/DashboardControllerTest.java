@@ -38,7 +38,7 @@ class DashboardControllerTest {
         when(dashboardService.obtenerDashboard(any(), anyString()))
                 .thenReturn(Map.of("totalUsuarios", 10));
 
-        mockMvc.perform(get("/bff/dashboard")
+        mockMvc.perform(get("/api/bff/dashboard")
                         .with(bffUser("ADMIN")))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.rol").value("ADMIN"))
@@ -50,7 +50,7 @@ class DashboardControllerTest {
         when(dashboardService.obtenerDashboard(any(), anyString()))
                 .thenReturn(Map.of("totalAsignaturas", 5));
 
-        mockMvc.perform(get("/bff/dashboard")
+        mockMvc.perform(get("/api/bff/dashboard")
                         .with(bffUser("DOCENTE")))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.rol").value("DOCENTE"));
@@ -58,7 +58,7 @@ class DashboardControllerTest {
 
     @Test
     void dashboard_withoutAuth_returns401() throws Exception {
-        mockMvc.perform(get("/bff/dashboard"))
+        mockMvc.perform(get("/api/bff/dashboard"))
                 .andExpect(status().isForbidden());
     }
 }

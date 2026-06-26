@@ -19,7 +19,7 @@ import com.proyecto.bff.service.AuthService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/bff/auth")
+@RequestMapping("/api/bff/auth")
 public class AuthController {
 
     private final AuthService authService;
